@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+enum UserStatus {
+  ONLINE
+  OFFLINE
+}
+
+enum MemberRole {
+  ADMIN
+  MODERATOR
+  MEMBER
+}
+
+enum ChannelType {
+  TEXT
+  AUDIO
+  VIDEO
+}
+
+
+model Profile {
+  id          String      @id @default(uuid())
+  userId      String      @unique
+  username    String      @unique
+  email       String      @unique
+  avatarUrl   String?
+  bio         String?
+  status      UserStatus  @default(OFFLINE)
+  isVerified  Boolean     @default(false)
+
+  // servers     Server[]
+  // members     Member[]
+  // channels    Channel[]
+  // messages    Message[]
+  // directMessages DirectMessage[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  @@index([email])
+  @@index([username])
+}
+
