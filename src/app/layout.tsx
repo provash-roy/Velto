@@ -3,6 +3,7 @@ import { Open_Sans } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 const openSans = Open_Sans({
@@ -21,11 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html
-        lang="en"
-        suppressHydrationWarning
-        className={` h-full antialiased`}
-      >
+      <html lang="en" suppressHydrationWarning>
         <body className={cn(openSans.className, "bg-white dark:bg-[#313338]")}>
           <ThemeProvider
             attribute="class"
@@ -33,7 +30,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <TooltipProvider>{children}</TooltipProvider>
           </ThemeProvider>
         </body>
       </html>
