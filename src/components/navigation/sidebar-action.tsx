@@ -1,6 +1,5 @@
 import { PlusIcon } from "lucide-react";
-import React from "react";
-import { Separator } from "../ui/separator";
+
 import ActionTooltip from "../action-tooltip";
 
 export default function SidebarAction() {
@@ -11,7 +10,7 @@ export default function SidebarAction() {
           <PlusIcon />
         </div>
       </ActionTooltip>
-      <Separator />
+   
     </div>
   );
 }
